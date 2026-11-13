@@ -2,71 +2,79 @@
 
 **Статус:** `W0-11_PARTIAL` (не `W0-11_READY`)
 **Дата / исполнитель:** 13.11.2026 / AI-агент
-**Repository URL / visibility / plan:** `https://github.com/a40-sorokin/Russian_Lang` / private / GitHub Free (по ответу API о rulesets)
-**Initial main SHA:** `a64f148` (`Update README.md`)
+**Repository URL / visibility / plan:** `https://github.com/a40-sorokin/Russian_Lang` / private / GitHub Free
+**Initial main SHA:** `a64f1480a4608abb393118ee87768a71a814a8af`
 **Develop создан от:** `a64f148`
-**Ветка W0-01/W0-11:** `feature/w0-01-bootstrap`
-**W0-01 commit:** `94e91c9196515e92afff499ae1e3f0704b33b8b5`
-**Lockfile fix:** `5200691a4d6ef63536f857cc45b777b2b1eeb2e6`
-**Feature tip (W0-11 файлы/отчёты):** `6acc1c73a097a0602cb993455d34ca0746bb9400`
-**Merge commit develop:** `ac98bb1` (локальный `--no-ff` merge, опубликован push'ем; не заменяет обязательный PR/review)
+**Bootstrap merge в develop:** `ac98bb15eadc8d2c58dedbfe442fcc8d9ed0d95d`
+**Feature tip W0-01/W0-11:** `a0476783cd5ccb9caaf9d9d814f5d00b05e1ed37`
+**Текущий develop (до финализационного PR):** `f3891e069d3a57bffbb0676352ece9335499d9df`
+**Финальный PR:** создаётся из `feature/w0-11-finalize`; см. ссылку в разделе «Фактические CI-прогоны»
 
 ## Фактическое состояние
 
-- `develop` создана от актуального `main` (`a64f148`), история `main` не переписана.
-- Из-за невозможности создать PR (403) каркас и CI опубликованы в `develop` локальным merge-коммитом `ac98bb1`; это **не** выдается за прохождение PR-процесса или review.
-- В ветке `feature/w0-01-bootstrap` находятся каркас W0-01, `.github/workflows/ci.yml`, `.github/pull_request_template.md`, нормативные документы и отчёты.
-- PR создать **не удалось**: fine-grained token не имеет `pull_requests=write` (GitHub API: 403, `x-accepted-github-permissions: pull_requests=write`).
-- Настроить branch protection/rulesets **не удалось**: token не имеет `administration=read`; API rulesets для private на Free отвечает «Upgrade to GitHub Pro».
-- Прочитать Actions runs/check-runs **не удалось**: token не имеет Actions/Checks permissions (403).
-- `git push` веток работает; workflow-файл принят remote без ошибки `workflow` scope.
+- `main` не переписан и не изменялся: `a64f148`. `develop` создана от него.
+- Каркас W0-01 и инфраструктура W0-11 опубликованы в `develop` (bootstrap merge `ac98bb1`).
+- Ветка `feature/w0-11-finalize` содержит этот отчёт с фактическими CI-ссылками.
+- GitHub Actions работает; запуски `quality`, `e2e`, `postgres-integration` завершаются.
+- Защита веток **не настроена**: GitHub Free + private. API отвечает `Upgrade to GitHub Pro or make this repository public to enable this feature` для и branch protection, и для rulesets. Это ограничение тарифа, а не прав токена.
+- Независимый второй ревьюер отсутствует; фиктивное «AI approval» не создавалось.
+
+## Фактические CI-прогоны
+
+| Назначение                                        | SHA           | Run                                                                                 | Результат                                            |
+| ------------------------------------------------- | ------------- | ----------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| Push в `develop`                                  | `f3891e0`     | [43479293491](https://github.com/a40-sorokin/Russian_Lang/actions/runs/43479293491) | **success**: quality, e2e, postgres-integration      |
+| Негативный PR #1 (намеренно падающий тест)        | `fe54c52`     | [43490732014](https://github.com/a40-sorokin/Russian_Lang/actions/runs/43490732014) | **failure**: `quality` красный; e2e/postgres зелёные |
+| Тот же PR после удаления падающего теста          | `4ca8a05`     | [43490957457](https://github.com/a40-sorokin/Russian_Lang/actions/runs/43490957457) | **success**: все три job                             |
+| Финальный PR `feature/w0-11-finalize` → `develop` | см. checks PR | будет добавлено после создания PR                                                   | ожидается success                                    |
+
+PR #1: <https://github.com/a40-sorokin/Russian_Lang/pull/1> — закрыт без merge, ветка `test/ci-negative` сохранена как свидетельство fail/pass.
 
 ## W11-01 … W11-10
 
-| ID     | Статус                             | Факт / ограничение                                                                                                                                                                                |
-| ------ | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| W11-01 | PASS                               | `develop` создана от `main` `a64f148`; `main` не изменён, force-push не выполнялся                                                                                                                |
-| W11-02 | **BLOCKED**                        | защита `main`/`develop` не настраивается доступным токеном; private Free не поддерживает rulesets. Требуется владелец с `administration:write` (или upgrade плана)                                |
-| W11-03 | PASS (файл)                        | `.github/pull_request_template.md` содержит UC/Fxx/ER, миграции, проверки, риски, непройденное, security-чеклист                                                                                  |
-| W11-04 | PASS (файл) / **BLOCKED** (run)    | `ci.yml`: `pull_request` → `develop,main`, `push` → `develop`, `workflow_dispatch`; `permissions: contents: read`; `concurrency`; workflow принят push'ем, факт запуска не подтверждён из-за прав |
-| W11-05 | PASS (локально)                    | шаги `npm ci`, `lint`, `typecheck`, `format:check`, `test:unit`, `build` выделены отдельно; локально все PASS                                                                                     |
-| W11-06 | **PARTIAL**                        | job `postgres-integration` реально поднимает `postgres:16`, создаёт чистую БД и проверяет версию. Миграций/интеграционных тестов нет: W0-03 не реализован → `NOT_APPLICABLE_YET`, не PASS         |
-| W11-07 | PASS (локально) / **BLOCKED** (CI) | Playwright 1.64.1 Chromium против `next start`; 3 теста PASS, включая `/api/health`. CI-run не подтверждён                                                                                        |
-| W11-08 | **BLOCKED**                        | нельзя создать PR и прочитать runs; fail/pass прогоны GitHub CI не сохранены. Локальные fail/pass не выдаются за CI                                                                               |
-| W11-09 | PASS (конфигурация)                | `contents: read`, нет `pull_request_target`, actions закреплены полными SHA, нет deployment secrets, `persist-credentials: false`                                                                 |
-| W11-10 | PASS                               | этот отчёт + `W0-01-report.md`                                                                                                                                                                    |
+| ID     | Статус              | Факт / ограничение                                                                                                                                                             |
+| ------ | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| W11-01 | PASS                | `develop` создана от `main` `a64f148`; история не переписана, force-push не применялся                                                                                         |
+| W11-02 | **BLOCKED (тариф)** | защита `main`/`develop` недоступна на GitHub Free для private: API требует GitHub Pro; rulesets и classic protection возвращают Upgrade                                        |
+| W11-03 | PASS                | `.github/pull_request_template.md`: UC/Fxx/ER, миграции, проверки, риски, непройденное, security-чеклист                                                                       |
+| W11-04 | PASS                | `ci.yml`: PR → `develop,main`, push → `develop`, минимальные `permissions: contents: read`, `concurrency`; реальный PR-запуск получен                                          |
+| W11-05 | PASS                | отдельные шаги `npm ci`, lint, typecheck, format:check, unit, build; все зелёные в CI                                                                                          |
+| W11-06 | **PARTIAL**         | job реально поднимает `postgres:16`, создаёт чистую БД и проверяет `select version()`. Миграций/интеграционных тестов нет: W0-03 не реализован → `NOT_APPLICABLE_YET`, не PASS |
+| W11-07 | PASS                | Playwright 1.64.1 Chromium против `next start` в CI; 3 теста, включая `/api/health`                                                                                            |
+| W11-08 | PASS                | сохранены fail-run `43490732014` и pass-run `43490957457` на ветке `test/ci-negative`                                                                                          |
+| W11-09 | PASS                | `contents: read`, нет `pull_request_target`, actions закреплены полными SHA, нет deployment secrets, `persist-credentials: false`                                              |
+| W11-10 | PASS                | этот отчёт + `W0-01-report.md`                                                                                                                                                 |
 
 ## Проверки, выполненные локально
 
-| Проверка                   | Результат                                         |
-| -------------------------- | ------------------------------------------------- |
-| `npm ci` (чистая копия)    | PASS                                              |
-| `npm run lint`             | PASS                                              |
-| `npm run typecheck`        | PASS                                              |
-| `npm run format:check`     | PASS                                              |
-| `npm run test:unit`        | PASS (1/1)                                        |
-| `npm run build`            | PASS                                              |
-| `npm run test:e2e`         | PASS (3/3, Chromium, `next start`)                |
-| `npm audit --omit=dev`     | PASS (0 vulnerabilities)                          |
-| PostgreSQL 16 / migrations | NOT_RUN: W0-03 отсутствует; job в CI предусмотрен |
+| Проверка                | Результат                                                            |
+| ----------------------- | -------------------------------------------------------------------- |
+| `npm ci` (чистая копия) | PASS                                                                 |
+| `npm run lint`          | PASS                                                                 |
+| `npm run typecheck`     | PASS                                                                 |
+| `npm run format:check`  | PASS                                                                 |
+| `npm run test:unit`     | PASS (1/1)                                                           |
+| `npm run build`         | PASS                                                                 |
+| `npm run test:e2e`      | PASS (3/3, Chromium, `next start`)                                   |
+| `npm audit --omit=dev`  | PASS (0 vulnerabilities)                                             |
+| PostgreSQL migrations   | NOT_APPLICABLE_YET: W0-03 отсутствует; provisioning проверяется в CI |
 
-Точные версии: Node 24.9.0, npm 11.6.0, Next 16.4.6, TypeScript 5.9.3, Vitest 5.0.5, Playwright 1.64.1.
+Версии: Node 24.9.0, npm 11.6.0, Next 16.4.6, TypeScript 5.9.3, Vitest 5.0.5, Playwright 1.64.1.
 
 ## Блокеры
 
-1. **Права GitHub token (внешний блокер).** Для завершения нужны: `pull_requests: write`, `checks: read`/`actions: read`, `administration: write` (ветки/rulesets). Без них нельзя открыть PR, увидеть CI и включить защиту. Это не исправляется изменением кода.
-2. **Тариф GitHub Free + private.** Rulesets недоступны; branch protection через API требует administration-права. Владельцу нужно настроить вручную либо изменить план/видимость.
-3. **W0-02…W0-10 не выполнены.** Нет PostgreSQL/Prisma-миграций, auth, worker и т.д.; поэтому integration/E2E-проверки продукта ограничены каркасом. W0-11 не может быть `READY` без фактического PR/CI и защиты.
-4. **Второй ревьюер отсутствует.** Фиктивное AI-одобрение не создавалось; требуется ручное решение владельца.
+1. **Тариф GitHub Free + private.** Branch protection/rulesets недоступны. Нужен GitHub Pro/Team либо ручной контроль владельца без нативного enforcement. Это нельзя обойти YAML-файлом; фиктивная защита не создавалась.
+2. **W0-02…W0-10 не выполнены.** Нет Prisma-миграций, auth, worker и продуктовых тестов; integration job фиксирует `NOT_APPLICABLE_YET`. W0-11 не может быть `READY` без них и без защиты веток.
+3. **Второй ревьюер отсутствует.** Требуется ручное решение владельца; AI не одобряет собственный PR.
+4. **Owner acceptance не предоставлен.** `WAVE0_ACCEPTED` и PROD не объявляются.
 
-## Что должен сделать владелец
+## Что осталось владельцу
 
-1. Выдать токену/приложению права `Pull requests: write`, `Actions: read`, `Administration: write` (или настроить через веб-интерфейс).
-2. Создать PR `feature/w0-01-bootstrap` → `develop` (ссылка сравнения: `https://github.com/a40-sorokin/Russian_Lang/compare/develop...feature/w0-01-bootstrap`), дождаться первого зелёного `CI`.
-3. Включить защиту `main` и `develop`: обязательный check `quality`/`e2e` (только после первого успешного run), запрет force push и удаления, review владельца.
-4. После этого повторить негативный тест: PR с намеренно падающим тестом → красный; исправление → зелёный. Сохранить ссылки на runs.
-5. Для полной приёмки W0-11 выполнить W0-02…W0-10 и включить реальные migration/integration tests (job уже предусмотрен).
+1. Подключить GitHub Pro/Team для private-репозитория (или письменно принять ручной контроль без нативной защиты).
+2. В настройках веток `main` и `develop`: запретить force push и удаление, включить обязательный review владельца.
+3. После первого стабильного запуска добавить обязательные checks `quality` и `e2e` (не добавлять несуществующее имя check).
+4. Проверить и merge финальный PR; затем закрыть W0-02…W0-10 и включить реальные migration/integration tests.
 
 ## Результат
 
-`W0-11_PARTIAL`. Настройка файлов CI/PR и ветки `develop` выполнена; фактические GitHub PR, CI-runs, fail/pass-доказательства и защита веток **не подтверждены** из-за отсутствующих прав токена/тарифа. `WAVE0_ACCEPTED` и PROD не объявляются.
+`W0-11_PARTIAL`: PR/CI/fail-pass/шаблон/минимальные permissions подтверждены фактически; защита веток заблокирована тарифом GitHub Free, интеграционные проверки БД ожидают W0-03. `WAVE0_ACCEPTED`, DEMO и PROD не объявляются.
