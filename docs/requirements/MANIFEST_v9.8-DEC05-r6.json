@@ -1,0 +1,114 @@
+{
+  "title": "RL — полный комплект документации v9.8-DEC05-r6: исправление цепочки происхождения и синхронизация действующих ссылок",
+  "release": "RL v9.8-DEC05-r6",
+  "date": "2026-11-13",
+  "source_release": "RL v9.8-DEC05-r1",
+  "source_zip_filename": "RL_9FBEBBBD8BB9_BABEBCBFBBB5BA82_v9.8-DEC05-r1_908085B882B5BA828380B0_v1.2_W0-01_v1.1.zip",
+  "source_zip_sha256": "9d85235b21b695db8d978bdad9c59b343dcf39b250677526b5a3025f9f62e2a7",
+  "source_manifest_filename": "MANIFEST_v9.8-DEC05-r1.json",
+  "source_manifest_sha256": "557edfd2f1baa8936d2bbcb9fa5363404d41c757ba0fcb896d343a2d628c75e6",
+  "architecture": "RL-Архитектурные решения и технический фундамент v1.3.md",
+  "git_policy": "RL_Git_CI-CD_и_окружения_v1.1.md",
+  "w001": "RL_W0-01_Создание_репозитория_и_каркаса_приложения_v1.2.md",
+  "w011": "RL_W0-11_GitHub_CI_ТЗ_v1.1.md",
+  "status_note": "Выпуск r6: исправлена документированная историческая ошибка метаданных происхождения r5; действующие ссылки синхронизированы. GitHub, CI, DEMO, PROD и открытые DEC не объявляются выполненными.",
+  "unchanged_from_source_r1": [
+    "RL_Общая_концепция_v9.8.md",
+    "RL_Use_Cases_v9.8.md",
+    "RL_ER-сущности_v9.8.md",
+    "RL_Удаление_данных_и_проверка_FK_v9.8.md",
+    "RL_FK_audit_PostgreSQL_v9.8.sql",
+    "RL_Контроль_изменений_ER_v9.8.md",
+    "RL_История_изменений_v9.8.md"
+  ],
+  "files": [
+    {
+      "filename": "ADR-004-email-provider.md",
+      "bytes": 8502,
+      "sha256": "bb8cb454902c18aab9d12fd33430a857791904ee94b6468a268599b26eebe793"
+    },
+    {
+      "filename": "AGENTS.md",
+      "bytes": 20360,
+      "sha256": "05d141d49882c92f37d7dce2ededc98f4864a753f4f023137947a32528170895"
+    },
+    {
+      "filename": "README_РЕЛИЗ_v9.8-DEC05-r6.md",
+      "bytes": 12447,
+      "sha256": "8bdba704cbb4ecfb10b0761ad7e11dbd7e0b330d9953ceac23c7d4cf965f3e93"
+    },
+    {
+      "filename": "RL-Архитектурные решения и технический фундамент v1.3.md",
+      "bytes": 99082,
+      "sha256": "8d08438095a3c2cfd9caf20b1359b3f806690182abaaa4c8c98d107f03e942e2"
+    },
+    {
+      "filename": "RL_ER-сущности_v9.8.md",
+      "bytes": 174903,
+      "sha256": "04492b4ec9d1dafb27c0491cedf91f5cb55ca4a0e3878628aeed38cc9742e34e"
+    },
+    {
+      "filename": "RL_FK_audit_PostgreSQL_v9.8.sql",
+      "bytes": 13467,
+      "sha256": "00a9f112abc77bdfe833efa884b82a77424b487b78b2fee8153dc964c1824eca"
+    },
+    {
+      "filename": "RL_Git_CI-CD_и_окружения_v1.1.md",
+      "bytes": 38323,
+      "sha256": "c46386897526d4b1f90f6ff50261622fcba82382659d5b8ee5fc15774770b96a"
+    },
+    {
+      "filename": "RL_Use_Cases_v9.8.md",
+      "bytes": 125295,
+      "sha256": "604059e826e21fd8f2d1bbc5eff9a13490757d5efa4007b4eb1ddbe61b3c268c"
+    },
+    {
+      "filename": "RL_W0-01_Создание_репозитория_и_каркаса_приложения_v1.2.md",
+      "bytes": 70057,
+      "sha256": "295dd7a1a9462947b253702fedf712e4b08bc052c02a7ce2714d1f74941da690"
+    },
+    {
+      "filename": "RL_W0-11_GitHub_CI_ТЗ_v1.1.md",
+      "bytes": 13348,
+      "sha256": "22e7dfea5acd946c621b19d0d2630664e031d88424d474d45adbfd7aaf0afb8c"
+    },
+    {
+      "filename": "RL_История_изменений_v9.8.md",
+      "bytes": 17824,
+      "sha256": "5c99421136ef93fd13f2d1cab61d08e69469347591fd0515d5928f5f7fc737f5"
+    },
+    {
+      "filename": "RL_Карта_изменений_пакета_v9.8-DEC05-r6.md",
+      "bytes": 11615,
+      "sha256": "107b47a476a435563fd1702e0993b4a0813308ddba6dae597c082281a57d1f67"
+    },
+    {
+      "filename": "RL_Контроль_изменений_ER_v9.8.md",
+      "bytes": 4086,
+      "sha256": "bed2dee91a47273926ee0864f46fadd13c3957bdece9de6915d137be7e7065e3"
+    },
+    {
+      "filename": "RL_Общая_концепция_v9.8.md",
+      "bytes": 17760,
+      "sha256": "d1f64d5ee07295f2b562291aee434e994691733927fbd60da7fd12f7aa461a0d"
+    },
+    {
+      "filename": "RL_Стек_v9.8.md",
+      "bytes": 24747,
+      "sha256": "505ab9291330d6c1742937c4446bedcf35780976d665b34abfe08d330364a568"
+    },
+    {
+      "filename": "RL_Удаление_данных_и_проверка_FK_v9.8.md",
+      "bytes": 72688,
+      "sha256": "6247a00f66363a88471fe3969e2467981caa346b2a2a547a8079ecf748456680"
+    },
+    {
+      "filename": "RL_Функциональная_декомпозиция_v9.8.md",
+      "bytes": 60422,
+      "sha256": "b9e258f3eb194bfc154365ace0b9e9009a4e99abce2569317588f719b4e1b358"
+    }
+  ],
+  "previous_release": "RL v9.8-DEC05-r5",
+  "previous_zip_sha256": "f1dcbeb98fa843a848a3fdb256b176e47e4e11d99da8276c6856021e85842f64",
+  "correction_note": "В r5 ошибочно было указано previous_release=r3 и SHA-256 ZIP r3 вместо фактических previous_release=r4 и SHA-256 ZIP r4 (6281758f42fb9adc48151a801106f0360e51eacd76610f642da7a0ecde6ad329); также correction_note r5 описывал правки r4, а не фактическую синхронизацию активных ссылок r5. В r6 установлено корректное происхождение r5→r6 (SHA-256 ZIP r5: f1dcbeb98fa843a848a3fdb256b176e47e4e11d99da8276c6856021e85842f64), обновлены активные ссылки на r6 в AGENTS, W0-01, Git/CI-CD, README и карте изменений. Изменения только редакционные/трассировочные, без изменения функциональных требований или DEC."
+}

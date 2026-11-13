@@ -1,0 +1,12 @@
+node_modules
+.next
+out
+coverage
+playwright-report
+test-results
+package-lock.json
+AGENTS.md
+docs/requirements/**
+docs/architecture/**
+docs/release/**
+docs/decisions/ADR-004-email-provider.md
