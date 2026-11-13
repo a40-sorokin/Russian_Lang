@@ -36,6 +36,8 @@
 | Тот же PR после удаления падающего теста   | `4ca8a05` | [43490957457](https://github.com/a40-sorokin/Russian_Lang/actions/runs/43490957457) | **success**: все три job                             |
 | Финальный PR #2, первый head               | `1031150` | [43491302651](https://github.com/a40-sorokin/Russian_Lang/actions/runs/43491302651) | **success**: все три job                             |
 | Финальный PR #2, head с ссылками           | `5ea4ebb` | [43491554379](https://github.com/a40-sorokin/Russian_Lang/actions/runs/43491554379) | **success**: все три job                             |
+| PR #2, head с protection                   | `cc8743a` | [43492922696](https://github.com/a40-sorokin/Russian_Lang/actions/runs/43492922696) | **success**: все три job                             |
+| Merge PR #2 в `develop`                    | `f0cc7e4` | [43493143798](https://github.com/a40-sorokin/Russian_Lang/actions/runs/43493143798) | **success**: quality, e2e, postgres-integration      |
 
 PR #1: <https://github.com/a40-sorokin/Russian_Lang/pull/1> — закрыт без merge, ветка `test/ci-negative` сохранена как свидетельство fail/pass.
 
