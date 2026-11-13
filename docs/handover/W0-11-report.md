@@ -9,11 +9,12 @@
 **W0-01 commit:** `94e91c9196515e92afff499ae1e3f0704b33b8b5`
 **Lockfile fix:** `5200691a4d6ef63536f857cc45b777b2b1eeb2e6`
 **Feature tip (W0-11 файлы/отчёты):** `6acc1c73a097a0602cb993455d34ca0746bb9400`
-**Merge commit develop:** определяется `git log --merges -1 develop` (см. историю; SHA не выдумывается)
+**Merge commit develop:** `ac98bb1` (локальный `--no-ff` merge, опубликован push'ем; не заменяет обязательный PR/review)
 
 ## Фактическое состояние
 
 - `develop` создана от актуального `main` (`a64f148`), история `main` не переписана.
+- Из-за невозможности создать PR (403) каркас и CI опубликованы в `develop` локальным merge-коммитом `ac98bb1`; это **не** выдается за прохождение PR-процесса или review.
 - В ветке `feature/w0-01-bootstrap` находятся каркас W0-01, `.github/workflows/ci.yml`, `.github/pull_request_template.md`, нормативные документы и отчёты.
 - PR создать **не удалось**: fine-grained token не имеет `pull_requests=write` (GitHub API: 403, `x-accepted-github-permissions: pull_requests=write`).
 - Настроить branch protection/rulesets **не удалось**: token не имеет `administration=read`; API rulesets для private на Free отвечает «Upgrade to GitHub Pro».
