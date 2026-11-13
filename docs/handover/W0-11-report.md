@@ -8,7 +8,7 @@
 **Bootstrap merge в develop:** `ac98bb15eadc8d2c58dedbfe442fcc8d9ed0d95d`
 **Feature tip W0-01/W0-11:** `a0476783cd5ccb9caaf9d9d814f5d00b05e1ed37`
 **Текущий develop (до финализационного PR):** `f3891e069d3a57bffbb0676352ece9335499d9df`
-**Финальный PR:** создаётся из `feature/w0-11-finalize`; см. ссылку в разделе «Фактические CI-прогоны»
+**Финальный PR:** [#2](https://github.com/a40-sorokin/Russian_Lang/pull/2) (`feature/w0-11-finalize` → `develop`)
 
 ## Фактическое состояние
 
