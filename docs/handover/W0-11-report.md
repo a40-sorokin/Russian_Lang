@@ -8,7 +8,8 @@
 **Ветка W0-01/W0-11:** `feature/w0-01-bootstrap`
 **W0-01 commit:** `94e91c9196515e92afff499ae1e3f0704b33b8b5`
 **Lockfile fix:** `5200691a4d6ef63536f857cc45b777b2b1eeb2e6`
-**Финальный SHA develop / merge:** указывается ниже после фактического merge (раздел «Фактическое состояние»)
+**Feature tip (W0-11 файлы/отчёты):** `6acc1c73a097a0602cb993455d34ca0746bb9400`
+**Merge commit develop:** определяется `git log --merges -1 develop` (см. историю; SHA не выдумывается)
 
 ## Фактическое состояние
 
